@@ -21,8 +21,12 @@ public class YerbaService {
         this.yerbaRepository = yerbaRepository;
     }
 
-    public List<Yerba> findAllYerba() {
-        return yerbaRepository.findAll();
+    public List<Yerba> findAllYerba(String nameFilter, String brandFilter, String countryFilter) {
+        if ((nameFilter == null || nameFilter.isEmpty()) && (brandFilter == null || brandFilter.equals(""))
+                && (countryFilter == null || countryFilter.isEmpty()))
+            return yerbaRepository.findAll();
+        else
+            return yerbaRepository.findAllByFilters(nameFilter, brandFilter, countryFilter);
     }
 
     public Yerba finYerbaById(long id) {
