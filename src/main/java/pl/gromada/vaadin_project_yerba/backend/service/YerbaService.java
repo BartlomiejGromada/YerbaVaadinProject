@@ -37,6 +37,14 @@ public class YerbaService {
         yerbaRepository.save(yerba);
     }
 
+    public void deleteYerba(Yerba yerba) {
+        yerbaRepository.delete(yerba);
+    }
+
+    public long countYerba() {
+        return yerbaRepository.count();
+    }
+
     public void updateYerba(long id, Yerba yerba) {
         yerba.setIdYerba(id);
         yerbaRepository.save(yerba);
