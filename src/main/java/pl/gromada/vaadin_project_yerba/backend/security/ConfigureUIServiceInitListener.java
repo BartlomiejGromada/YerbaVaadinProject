@@ -6,6 +6,7 @@ import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
 import org.springframework.stereotype.Component;
 import pl.gromada.vaadin_project_yerba.ui.views.login.LoginView;
+import pl.gromada.vaadin_project_yerba.ui.views.register.RegisterView;
 
 @Component
 public class ConfigureUIServiceInitListener implements VaadinServiceInitListener {
@@ -24,7 +25,7 @@ public class ConfigureUIServiceInitListener implements VaadinServiceInitListener
     //In authenticateNavigation, we reroute all requests to the login, if the user is not logged in
     private void authenticateNavigation(BeforeEnterEvent event) {
         if (!LoginView.class.equals(event.getNavigationTarget())
-                && !SecurityUtils.isUserLoggedIn()) {
+                && !SecurityUtils.isUserLoggedIn() && !RegisterView.class.equals(event.getNavigationTarget())) {
             event.rerouteTo(LoginView.class);
         }
     }

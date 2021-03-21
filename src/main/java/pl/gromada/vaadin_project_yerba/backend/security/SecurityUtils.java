@@ -31,8 +31,4 @@ public final class SecurityUtils {
                 && authentication.isAuthenticated();
     }
 
-    public static void logout() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        authentication.setAuthenticated(false);
-    }
 }

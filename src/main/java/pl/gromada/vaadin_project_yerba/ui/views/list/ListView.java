@@ -13,6 +13,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.security.access.annotation.Secured;
 import pl.gromada.vaadin_project_yerba.backend.enums.Brand;
 import pl.gromada.vaadin_project_yerba.backend.enums.Country;
 import pl.gromada.vaadin_project_yerba.backend.model.Yerba;
@@ -150,6 +151,7 @@ public class ListView extends VerticalLayout {
 
         Button buttonAddYerba = new Button("Add yerba");
         buttonAddYerba.addClickListener(click -> addYerba());
+        buttonAddYerba.setId("button-add");
 
         //add filterLayout to MainLayout
         HorizontalLayout toolbar = new HorizontalLayout(filterIcon, filterNameText, filterBrandSelect,

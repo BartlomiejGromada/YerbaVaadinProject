@@ -27,6 +27,7 @@ public class MainLayout extends AppLayout {
 
         //logout
         Button buttonLogout = new Button("Log out");
+        buttonLogout.setId("logout");
         buttonLogout.addClickListener(click -> UI.getCurrent().getPage().setLocation("/logout"));
 
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, buttonLogout);
@@ -45,5 +46,7 @@ public class MainLayout extends AppLayout {
         addToDrawer(new VerticalLayout(
                 listLink
         ));
+
+        setId("drawer");
     }
 }

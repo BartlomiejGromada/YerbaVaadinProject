@@ -13,10 +13,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
+import org.springframework.security.access.annotation.Secured;
 import pl.gromada.vaadin_project_yerba.backend.enums.Brand;
 import pl.gromada.vaadin_project_yerba.backend.enums.Country;
 import pl.gromada.vaadin_project_yerba.backend.model.Yerba;
-
 
 public class YerbaForm extends FormLayout {
 
