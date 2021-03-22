@@ -1,4 +1,4 @@
-package pl.gromada.vaadin_project_yerba.ui.views.list;
+package pl.gromada.vaadin_project_yerba.ui.views.yerba_list;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -28,7 +28,8 @@ import java.util.stream.Collectors;
 
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Yerba")
-public class ListView extends VerticalLayout {
+@Secured("ROLE_ADMIN")
+public class YerbaListView extends VerticalLayout {
 
     Grid<Yerba> yerbaGrid = new Grid<>(Yerba.class);
     TextField filterNameText = new TextField();
@@ -39,7 +40,7 @@ public class ListView extends VerticalLayout {
 
     private YerbaService yerbaService;
 
-    public ListView(YerbaService yerbaService) {
+    public YerbaListView(YerbaService yerbaService) {
         this.yerbaService = yerbaService;
         addClassName("list-view");
         setSizeFull();
@@ -80,7 +81,7 @@ public class ListView extends VerticalLayout {
     }
 
     private void configureGrid() {
-        yerbaGrid.addClassName("yerba-grid");
+        yerbaGrid.addClassName("grid");
         yerbaGrid.setSizeFull();
         yerbaGrid.removeColumnByKey("photo");
         yerbaGrid.setColumns("idYerba", "name", "brand", "country");
@@ -103,9 +104,7 @@ public class ListView extends VerticalLayout {
             yerbaForm.setYerba(yerba);
             yerbaForm.setVisible(true);
             addClassName("editing");
-        };
-
-
+        }
     }
 
     private void configureFilter() {

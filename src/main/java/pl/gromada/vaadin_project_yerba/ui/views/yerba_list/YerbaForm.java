@@ -1,4 +1,4 @@
-package pl.gromada.vaadin_project_yerba.ui.views.list;
+package pl.gromada.vaadin_project_yerba.ui.views.yerba_list;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
@@ -9,11 +9,11 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.shared.Registration;
-import org.springframework.security.access.annotation.Secured;
 import pl.gromada.vaadin_project_yerba.backend.enums.Brand;
 import pl.gromada.vaadin_project_yerba.backend.enums.Country;
 import pl.gromada.vaadin_project_yerba.backend.model.Yerba;
@@ -24,6 +24,7 @@ public class YerbaForm extends FormLayout {
     ComboBox<Brand> brand = new ComboBox<>("Brand");
     ComboBox<Country> country = new ComboBox<>("Country");
     TextField photo = new TextField("Photo url");
+    IntegerField stars = new IntegerField("Stars");
 
     Button saveButton = new Button("Save");
     Button deleteButton = new Button("Delete");
@@ -32,7 +33,12 @@ public class YerbaForm extends FormLayout {
     Binder<Yerba> binder = new BeanValidationBinder<>(Yerba.class);
 
     public YerbaForm() {
-        addClassName("yerba-form");
+        addClassName("form");
+
+        stars.setHasControls(true);
+        stars.setStep(1);
+        stars.setMin(1);
+        stars.setMax(6);
 
         binder.bindInstanceFields(this);
         brand.setItems(Brand.values());
@@ -43,6 +49,7 @@ public class YerbaForm extends FormLayout {
                 brand,
                 country,
                 photo,
+                stars,
                 createButtonLayout()
         );
     }
@@ -99,7 +106,6 @@ public class YerbaForm extends FormLayout {
         DeleteEvent(YerbaForm source, Yerba yerba) {
             super(source, yerba);
         }
-
     }
 
     public static class CloseEvent extends YerbaFormEvent {

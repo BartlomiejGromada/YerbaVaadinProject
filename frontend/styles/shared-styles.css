@@ -21,18 +21,18 @@ a[highlight] {
     display: flex;
 }
 
-.list-view .yerba-grid {
+.list-view .grid {
     flex: 2;
 }
 
-.list-view .yerba-form {
+.list-view .form {
     flex: 1;
     padding: var(--lumo-space-m);
 }
 
 @media all and (max-width: 1100px) {
     .list-view.editing .toolbar,
-    .list-view.editing .yerba-grid {
+    .list-view.editing .grid {
         display: none;
     }
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.gromada.vaadin_project_yerba.backend.enums.Brand;
 import pl.gromada.vaadin_project_yerba.backend.enums.Country;
-import pl.gromada.vaadin_project_yerba.backend.exception.YerbaNotFoundException;
 import pl.gromada.vaadin_project_yerba.backend.model.Yerba;
 import pl.gromada.vaadin_project_yerba.backend.repo.YerbaRepository;
 
@@ -29,25 +28,12 @@ public class YerbaService {
             return yerbaRepository.findAllByFilters(nameFilter, brandFilter, countryFilter);
     }
 
-    public Yerba finYerbaById(long id) {
-        return yerbaRepository.findById(id).orElseThrow(() -> new YerbaNotFoundException(id));
-    }
-
     public void saveYerba(Yerba yerba) {
         yerbaRepository.save(yerba);
     }
 
     public void deleteYerba(Yerba yerba) {
         yerbaRepository.delete(yerba);
-    }
-
-    public long countYerba() {
-        return yerbaRepository.count();
-    }
-
-    public void updateYerba(long id, Yerba yerba) {
-        yerba.setIdYerba(id);
-        yerbaRepository.save(yerba);
     }
 
     @PostConstruct

@@ -120,7 +120,7 @@ public class RegisterView extends VerticalLayout {
                 Notification.show("Registration was successful", 5000, Notification.Position.BOTTOM_CENTER);
             } else {
                 username.setInvalid(true);
-                username.setErrorMessage("This nickname is taken");
+                Notification.show("This nickname is taken", 5000, Notification.Position.BOTTOM_CENTER);
             }
         } else
             Notification.show("Please enter valid values", 5000, Notification.Position.BOTTOM_CENTER);

@@ -26,7 +26,7 @@ public class User implements Serializable {
     private String firstName;
     @NotBlank(message = "{pl.gromada.backend.model.User.lastName.notBlank.message}")
     private String lastName;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_user_role",
             joinColumns = {@JoinColumn(name = "idUser", referencedColumnName = "idUser")},

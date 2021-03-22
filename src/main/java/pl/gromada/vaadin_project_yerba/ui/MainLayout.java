@@ -11,7 +11,9 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
-import pl.gromada.vaadin_project_yerba.ui.views.list.ListView;
+import pl.gromada.vaadin_project_yerba.backend.security.SecurityUtils;
+import pl.gromada.vaadin_project_yerba.ui.views.user_yerba_list.UserYerbaListView;
+import pl.gromada.vaadin_project_yerba.ui.views.yerba_list.YerbaListView;
 
 @CssImport("./styles/shared-styles.css")
 public class MainLayout extends AppLayout {
@@ -40,12 +42,17 @@ public class MainLayout extends AppLayout {
     }
 
     public void createDrawer() {
-        RouterLink listLink = new RouterLink("List", ListView.class);
-        listLink.setHighlightCondition(HighlightConditions.sameLocation());
+        RouterLink listYerbaLink = new RouterLink("List", YerbaListView.class);
+        listYerbaLink.setHighlightCondition(HighlightConditions.sameLocation());
 
-        addToDrawer(new VerticalLayout(
-                listLink
-        ));
+        RouterLink listMyYerbaLink = new RouterLink("My Yerba", UserYerbaListView.class);
+        listMyYerbaLink.setHighlightCondition(HighlightConditions.sameLocation());
+
+        if(SecurityUtils.getUserRoles().contains("ROLE_ADMIN"))
+            addToDrawer(new VerticalLayout(listYerbaLink));
+
+        if(SecurityUtils.getUserRoles().contains("ROLE_USER"))
+           addToDrawer(new VerticalLayout(listMyYerbaLink));
 
         setId("drawer");
     }

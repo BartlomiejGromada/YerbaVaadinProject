@@ -53,8 +53,13 @@ public class UserService {
         UserRole userRoleUser = userRoleRepository.findByRole("ROLE_USER");
         roles.add(userRoleAdmin);
         roles.add(userRoleUser);
-        userRepository.save(new User("Bartas", "{noop}pass123", "Bartek", "Gromada",
+        userRepository.save(new User("Bartas", "{noop}pass", "Bartek", "Gromada",
                roles));
+
+        Set<UserRole> rolesUser = new HashSet<>();
+        rolesUser.add(userRoleUser);
+        userRepository.save(new User("Tom", "{noop}pass", "Tomasz", "Lis",
+                rolesUser));
     }
 
     public User findUserByUsername(String username) {
