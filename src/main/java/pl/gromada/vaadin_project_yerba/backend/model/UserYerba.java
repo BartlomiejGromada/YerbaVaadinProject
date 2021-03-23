@@ -16,11 +16,11 @@ public class UserYerba {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUserYerba;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_yerba")
     @NotNull(message = "{pl.gromada.backend.model.UserYerba.yerba.notNull.message}")
     private Yerba yerba;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_user")
     @NotNull
     private User user;

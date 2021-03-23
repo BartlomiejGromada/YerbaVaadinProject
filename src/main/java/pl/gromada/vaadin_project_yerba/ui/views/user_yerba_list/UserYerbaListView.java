@@ -21,8 +21,8 @@ import pl.gromada.vaadin_project_yerba.backend.service.UserYerbaService;
 import pl.gromada.vaadin_project_yerba.backend.service.YerbaService;
 import pl.gromada.vaadin_project_yerba.ui.MainLayout;
 
-@Route(value = "myYerba", layout = MainLayout.class)
-@PageTitle("My yerba")
+@Route(value = "myList", layout = MainLayout.class)
+@PageTitle("My list")
 @Secured("ROLE_USER")
 public class UserYerbaListView extends VerticalLayout {
 
@@ -31,12 +31,10 @@ public class UserYerbaListView extends VerticalLayout {
 
     private UserYerbaService userYerbaService;
     private UserService userService;
-    private YerbaService yerbaService;
 
     public UserYerbaListView(UserYerbaService userYerbaService, UserService userService, YerbaService yerbaService) {
         this.userYerbaService = userYerbaService;
         this.userService = userService;
-        this.yerbaService = yerbaService;
 
         addClassName("list-view");
         setSizeFull();

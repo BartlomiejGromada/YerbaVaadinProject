@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "yerba", layout = MainLayout.class)
 @PageTitle("Yerba")
 @Secured("ROLE_ADMIN")
 public class YerbaListView extends VerticalLayout {
@@ -46,7 +46,7 @@ public class YerbaListView extends VerticalLayout {
         setSizeFull();
         configureGrid();
 
-        yerbaForm =  new YerbaForm();
+        yerbaForm = new YerbaForm();
         yerbaForm.addListener(YerbaForm.SaveEvent.class, this::saveYerba);
         yerbaForm.addListener(YerbaForm.DeleteEvent.class, this::deleteYerba);
         yerbaForm.addListener(YerbaForm.CloseEvent.class, evt -> closeEditor());

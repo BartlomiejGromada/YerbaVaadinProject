@@ -6,11 +6,10 @@ import pl.gromada.vaadin_project_yerba.backend.enums.Brand;
 import pl.gromada.vaadin_project_yerba.backend.enums.Country;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,6 +29,8 @@ public class Yerba implements Serializable {
     private Country country;
     @NotBlank(message = "{pl.gromada.backend.model.Yerba.photo.notBlank.message}")
     private String photo;
+    @OneToMany(mappedBy = "yerba", cascade = CascadeType.REMOVE)
+    private List<UserYerba> yerba;
 
     public Yerba(String name, Brand brand, Country country, String photo) {
         this.name = name;

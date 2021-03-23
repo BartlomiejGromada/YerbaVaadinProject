@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //Allows all authenticated traffic.
                 .antMatchers("/register").permitAll()
+                .antMatchers("/yerbaDB").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
 

@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 import pl.gromada.vaadin_project_yerba.backend.security.SecurityUtils;
+import pl.gromada.vaadin_project_yerba.ui.views.homepage.HomeView;
 import pl.gromada.vaadin_project_yerba.ui.views.user_yerba_list.UserYerbaListView;
 import pl.gromada.vaadin_project_yerba.ui.views.yerba_list.YerbaListView;
 
@@ -42,6 +43,11 @@ public class MainLayout extends AppLayout {
     }
 
     public void createDrawer() {
+
+        RouterLink homePageLink = new RouterLink("Homepage", HomeView.class);
+        homePageLink.setHighlightCondition(HighlightConditions.sameLocation());
+        addToDrawer(new VerticalLayout(homePageLink));
+
         RouterLink listYerbaLink = new RouterLink("List", YerbaListView.class);
         listYerbaLink.setHighlightCondition(HighlightConditions.sameLocation());
 

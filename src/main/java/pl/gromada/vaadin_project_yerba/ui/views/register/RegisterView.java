@@ -15,7 +15,6 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-import org.apache.catalina.webresources.FileResource;
 import pl.gromada.vaadin_project_yerba.backend.model.User;
 import pl.gromada.vaadin_project_yerba.backend.service.UserService;
 import pl.gromada.vaadin_project_yerba.ui.views.login.LoginView;
@@ -24,7 +23,6 @@ import pl.gromada.vaadin_project_yerba.ui.views.login.LoginView;
 @PageTitle("Register")
 public class RegisterView extends VerticalLayout {
 
-    VerticalLayout formRegistration = new VerticalLayout();
     TextField firstName = new TextField();
     TextField lastName = new TextField();
     TextField username = new TextField();
@@ -38,8 +36,9 @@ public class RegisterView extends VerticalLayout {
         addClassName("register-form");
         setSizeFull();
 
-        setJustifyContentMode(JustifyContentMode.CENTER);
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
         setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
         createForm();
         RouterLink linkLogin = new RouterLink("Login now", LoginView.class);
         Image  image = new Image("https://img.icons8.com/ios/452/mate.png", "YerbaImage");
@@ -50,13 +49,13 @@ public class RegisterView extends VerticalLayout {
                 image,
                 new H1("World of yerba"),
                 new H2("Registration"),
-                formRegistration,
+                createForm(),
                 createButtonsForm(),
                 linkLogin
         );
     }
 
-    public void createForm() {
+    public VerticalLayout createForm() {
         firstName.setLabel("First Name");
         firstName.setAutofocus(true);
         firstName.setRequired(true);
@@ -80,8 +79,11 @@ public class RegisterView extends VerticalLayout {
         binder.forField(username).bind("username");
         binder.forField(password).bind("password");
 
+        VerticalLayout formRegistration = new VerticalLayout();
         formRegistration.setAlignItems(Alignment.CENTER);
         formRegistration.add(firstName, lastName, username, password);
+
+        return formRegistration;
     }
 
     private HorizontalLayout createButtonsForm() {
